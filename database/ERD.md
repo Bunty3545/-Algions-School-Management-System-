@@ -256,3 +256,4 @@ erDiagram
 4. **Fee Reconciliation Guarantees**:
    - `amountDue = amount - amountPaid`.
    - Payment operations are wrapped in PostgreSQL ACID transactions (`prisma.$transaction`) with optimistic locking on balance integrity.
+

@@ -1,15 +1,15 @@
+import 'dotenv/config';
 import { PrismaClient } from '@prisma/client';
 import path from 'path';
 import dotenv from 'dotenv';
 
-// Explicitly load .env from backend and root
-dotenv.config({ path: path.resolve(__dirname, '../../../.env') });
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+dotenv.config({ path: path.resolve(__dirname, '../../../.env') });
 
-const dbPath = path.resolve(__dirname, '../../dev.db').replace(/\\/g, '/');
-const databaseUrl = process.env.DATABASE_URL && process.env.DATABASE_URL.startsWith('file:')
+const defaultUrl = 'postgresql://postgres:password@localhost:5432/school_management?schema=public';
+const databaseUrl = process.env.DATABASE_URL && process.env.DATABASE_URL.startsWith('postgres')
   ? process.env.DATABASE_URL
-  : `file:${dbPath}`;
+  : defaultUrl;
 
 process.env.DATABASE_URL = databaseUrl;
 
