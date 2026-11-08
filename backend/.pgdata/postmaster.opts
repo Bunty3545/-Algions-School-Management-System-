@@ -1,0 +1,1 @@
+D:/lovely professional university/placement/81/node_modules/@embedded-postgres/windows-x64/native/bin/postgres.exe "-D" "D:\lovely professional university\placement\81\backend\.pgdata" "-p" "5432"

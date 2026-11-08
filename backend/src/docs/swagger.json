@@ -1,0 +1,146 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Algions School Management System API",
+    "version": "1.0.0",
+    "description": "Production-ready enterprise API for School Management System supporting Academic Administration, Attendance, Examinations & Grading, Fee Ledger Reconciliation, and Role-Based Access Control."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000/api/v1",
+      "description": "Local Development Server"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "summary": "Authenticate user & receive JWT token",
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": { "type": "string", "example": "admin@school.edu" },
+                  "password": { "type": "string", "example": "Admin@123" }
+                },
+                "required": ["email", "password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Login successful with token and user profile" },
+          "401": { "description": "Invalid credentials" }
+        }
+      }
+    },
+    "/attendance/record": {
+      "post": {
+        "summary": "Record daily attendance batch (Acceptance Criterion 2 & 1)",
+        "description": "Restricted to assigned teachers or admins. Prevents duplicate submissions or safely updates inside an atomic transaction.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "sectionId": { "type": "string" },
+                  "date": { "type": "string", "example": "2025-03-01" },
+                  "session": { "type": "string", "example": "FULL_DAY" },
+                  "allowUpdate": { "type": "boolean", "default": true },
+                  "entries": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "studentId": { "type": "string" },
+                        "status": { "type": "string", "enum": ["PRESENT", "ABSENT", "LATE", "EXCUSED"] },
+                        "remarks": { "type": "string" }
+                      },
+                      "required": ["studentId", "status"]
+                    }
+                  }
+                },
+                "required": ["sectionId", "date", "entries"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Attendance batch successfully recorded" },
+          "403": { "description": "Forbidden if teacher is not assigned to this section" },
+          "409": { "description": "Conflict if duplicate attendance exists and allowUpdate is false" }
+        }
+      }
+    },
+    "/exams/{examId}/report-card/{studentId}": {
+      "get": {
+        "summary": "Generate calculated student report card (Acceptance Criterion 3 & 4)",
+        "description": "Calculates marks, percentages, grades, GPA based on configurable grading rules. Strictly restricts guardians to linked students only.",
+        "parameters": [
+          { "name": "examId", "in": "path", "required": true, "schema": { "type": "string" } },
+          { "name": "studentId", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Calculated student report card" },
+          "403": { "description": "Forbidden if guardian attempts to query unlinked student" },
+          "404": { "description": "Exam or student not found" }
+        }
+      }
+    },
+    "/fees/pay": {
+      "post": {
+        "summary": "Process simulated fee payment & reconcile ledger (Acceptance Criterion 5)",
+        "description": "Atomically updates invoice paid amount and balance due, asserts ledger reconciliation, and generates receipt.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "invoiceId": { "type": "string" },
+                  "amount": { "type": "number", "example": 200.00 },
+                  "paymentMethod": { "type": "string", "example": "ONLINE_SIMULATED" },
+                  "referenceNote": { "type": "string", "example": "Parent portal simulated payment" }
+                },
+                "required": ["invoiceId", "amount"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Payment successful and ledger reconciled" },
+          "400": { "description": "Payment amount invalid or exceeds balance" }
+        }
+      }
+    },
+    "/fees/reconciliation": {
+      "get": {
+        "summary": "Verify fee ledger reconciliation (Acceptance Criterion 5)",
+        "description": "Asserts system-wide mathematical consistency: Total Invoiced == Total Paid + Total Outstanding Balance.",
+        "responses": {
+          "200": { "description": "Ledger reconciliation report" }
+        }
+      }
+    }
+  }
+}

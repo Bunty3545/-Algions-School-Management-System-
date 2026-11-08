@@ -1,0 +1,21 @@
+{
+  "name": "algions-school-management-system",
+  "version": "1.0.0",
+  "description": "Enterprise-grade Full-Stack School Management System for Algions AI Labs Assessment",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "setup": "npm install && npm run db:setup",
+    "db:setup": "npm --prefix backend run db:setup",
+    "db:seed": "npm --prefix backend run db:seed",
+    "dev": "concurrently \"npm --prefix backend run dev\" \"npm --prefix frontend run dev\"",
+    "build": "npm --prefix backend run build && npm --prefix frontend run build",
+    "test": "npm --prefix backend test"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
