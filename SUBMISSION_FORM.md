@@ -31,7 +31,8 @@ Use the pre-filled responses below to complete your individualized submission fo
   - **Local Path**: `demo-video/school-management-system-demo.webm` (File Size: ~9.2 MB)
 - **Demo Mode Declaration**: **Local-Only High-Fidelity Demo with Zero External Friction**
   - *Declaration*: "The application runs locally with zero external configuration via `npm run setup && npm test && npm run dev`. An automated embedded PostgreSQL engine with pre-seeded synthetic data and an instant 1-click reviewer persona switcher eliminates external hosting credentials and payment API dependencies. Production deployment manifests for Render, Vercel, and Docker Compose are also included."
-- **Live Web Demo URL (if deployed)**: `N/A (Local-Only Demo Declared; Docker Compose & Render blueprints included in repo)`
+- **Live Web Demo URL (if deployed)**: `https://3cc2921550c5d1.lhr.life`
+  - *Fallback / Permanent Deploy Options*: Render Blueprint (`render.yaml`) & Docker Compose (`docker-compose.yml`) included in repository.
 
 ---
 
