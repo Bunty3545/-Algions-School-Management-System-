@@ -24,6 +24,12 @@ export function isPortOpen(port: number, host = '127.0.0.1'): Promise<boolean> {
 let pgInstance: any = null;
 
 export async function ensurePostgresRunning(port = 5432) {
+  const dbUrl = process.env.DATABASE_URL || '';
+  if (dbUrl && !dbUrl.includes('localhost') && !dbUrl.includes('127.0.0.1')) {
+    console.log('[PostgreSQL] Remote DATABASE_URL detected, skipping local embedded engine.');
+    return;
+  }
+
   const isOpen = await isPortOpen(port);
   if (isOpen) {
     console.log(`[PostgreSQL] Port ${port} is active, connecting to existing instance.`);
