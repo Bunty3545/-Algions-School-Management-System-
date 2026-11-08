@@ -381,78 +381,7 @@ export const AdminPortal: React.FC = () => {
             </div>
           </div>
 
-          {/* Interactive Recharts Analytics */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Chart 1: Financial & Fee Revenue Health */}
-            <div className="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm">
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900">Fee Revenue & Collection Status</h4>
-                  <p className="text-xs text-slate-500">Real-time ledger breakdown (Billed vs Collected vs Due)</p>
-                </div>
-                <span className="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-bold border border-emerald-200">
-                  {dashboard.finances.collectionRate}% Recovered
-                </span>
-              </div>
-              <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart
-                    data={[
-                      { name: 'Total Billed', amount: dashboard.finances.totalBilled, fill: '#6366f1' },
-                      { name: 'Settled Paid', amount: dashboard.finances.totalCollected, fill: '#10b981' },
-                      { name: 'Outstanding Due', amount: dashboard.finances.totalOutstanding, fill: '#f59e0b' },
-                    ]}
-                    margin={{ top: 10, right: 10, left: 10, bottom: 0 }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                    <XAxis dataKey="name" tick={{ fontSize: 12, fill: '#64748b' }} axisLine={false} tickLine={false} />
-                    <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} tickFormatter={(val) => `$${val}`} />
-                    <Tooltip formatter={(value: any) => [`$${value}`, 'Amount']} contentStyle={{ borderRadius: 12, border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
-                    <Bar dataKey="amount" radius={[8, 8, 0, 0]} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-
-            {/* Chart 2: Student Enrollment by Class */}
-            <div className="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm">
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900">Enrollment & Capacity Distribution</h4>
-                  <p className="text-xs text-slate-500">Student count distributed across academic classes</p>
-                </div>
-                <span className="px-2.5 py-1 rounded-full bg-primary-50 text-primary-700 text-[11px] font-bold border border-primary-200">
-                  {dashboard.overview.studentCount} Total
-                </span>
-              </div>
-              <div className="h-64 flex items-center justify-center">
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie
-                      data={classes.map((c, i) => ({
-                        name: c.name,
-                        value: c.sections.reduce((acc: number, s: any) => acc + (s._count?.students || 0), 0) || 1,
-                        fill: ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'][i % 5],
-                      }))}
-                      cx="50%"
-                      cy="50%"
-                      innerRadius={55}
-                      outerRadius={80}
-                      paddingAngle={5}
-                      dataKey="value"
-                      label={({ name, value }) => `${name} (${value})`}
-                    >
-                      {classes.map((_, i) => (
-                        <Cell key={`cell-${i}`} fill={['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'][i % 5]} />
-                      ))}
-                    </Pie>
-                    <Tooltip contentStyle={{ borderRadius: 12, border: '1px solid #e2e8f0' }} />
-                    <Legend verticalAlign="bottom" height={36} iconType="circle" />
-                  </PieChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-          </div>
+          
         </div>
       )}
 
@@ -539,78 +468,7 @@ export const AdminPortal: React.FC = () => {
             </div>
           </div>
 
-          {/* Interactive Recharts Analytics */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Chart 1: Financial & Fee Revenue Health */}
-            <div className="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm">
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900">Fee Revenue & Collection Status</h4>
-                  <p className="text-xs text-slate-500">Real-time ledger breakdown (Billed vs Collected vs Due)</p>
-                </div>
-                <span className="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-bold border border-emerald-200">
-                  {dashboard.finances.collectionRate}% Recovered
-                </span>
-              </div>
-              <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart
-                    data={[
-                      { name: 'Total Billed', amount: dashboard.finances.totalBilled, fill: '#6366f1' },
-                      { name: 'Settled Paid', amount: dashboard.finances.totalCollected, fill: '#10b981' },
-                      { name: 'Outstanding Due', amount: dashboard.finances.totalOutstanding, fill: '#f59e0b' },
-                    ]}
-                    margin={{ top: 10, right: 10, left: 10, bottom: 0 }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                    <XAxis dataKey="name" tick={{ fontSize: 12, fill: '#64748b' }} axisLine={false} tickLine={false} />
-                    <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} tickFormatter={(val) => `$${val}`} />
-                    <Tooltip formatter={(value: any) => [`$${value}`, 'Amount']} contentStyle={{ borderRadius: 12, border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
-                    <Bar dataKey="amount" radius={[8, 8, 0, 0]} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-
-            {/* Chart 2: Student Enrollment by Class */}
-            <div className="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm">
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900">Enrollment & Capacity Distribution</h4>
-                  <p className="text-xs text-slate-500">Student count distributed across academic classes</p>
-                </div>
-                <span className="px-2.5 py-1 rounded-full bg-primary-50 text-primary-700 text-[11px] font-bold border border-primary-200">
-                  {dashboard.overview.studentCount} Total
-                </span>
-              </div>
-              <div className="h-64 flex items-center justify-center">
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie
-                      data={classes.map((c, i) => ({
-                        name: c.name,
-                        value: c.sections.reduce((acc: number, s: any) => acc + (s._count?.students || 0), 0) || 1,
-                        fill: ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'][i % 5],
-                      }))}
-                      cx="50%"
-                      cy="50%"
-                      innerRadius={55}
-                      outerRadius={80}
-                      paddingAngle={5}
-                      dataKey="value"
-                      label={({ name, value }) => `${name} (${value})`}
-                    >
-                      {classes.map((_, i) => (
-                        <Cell key={`cell-${i}`} fill={['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'][i % 5]} />
-                      ))}
-                    </Pie>
-                    <Tooltip contentStyle={{ borderRadius: 12, border: '1px solid #e2e8f0' }} />
-                    <Legend verticalAlign="bottom" height={36} iconType="circle" />
-                  </PieChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-          </div>
+          
         </div>
       )}
 
@@ -624,78 +482,7 @@ export const AdminPortal: React.FC = () => {
             </div>
           </div>
 
-          {/* Interactive Recharts Analytics */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Chart 1: Financial & Fee Revenue Health */}
-            <div className="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm">
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900">Fee Revenue & Collection Status</h4>
-                  <p className="text-xs text-slate-500">Real-time ledger breakdown (Billed vs Collected vs Due)</p>
-                </div>
-                <span className="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-bold border border-emerald-200">
-                  {dashboard.finances.collectionRate}% Recovered
-                </span>
-              </div>
-              <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart
-                    data={[
-                      { name: 'Total Billed', amount: dashboard.finances.totalBilled, fill: '#6366f1' },
-                      { name: 'Settled Paid', amount: dashboard.finances.totalCollected, fill: '#10b981' },
-                      { name: 'Outstanding Due', amount: dashboard.finances.totalOutstanding, fill: '#f59e0b' },
-                    ]}
-                    margin={{ top: 10, right: 10, left: 10, bottom: 0 }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                    <XAxis dataKey="name" tick={{ fontSize: 12, fill: '#64748b' }} axisLine={false} tickLine={false} />
-                    <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} tickFormatter={(val) => `$${val}`} />
-                    <Tooltip formatter={(value: any) => [`$${value}`, 'Amount']} contentStyle={{ borderRadius: 12, border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
-                    <Bar dataKey="amount" radius={[8, 8, 0, 0]} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-
-            {/* Chart 2: Student Enrollment by Class */}
-            <div className="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm">
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900">Enrollment & Capacity Distribution</h4>
-                  <p className="text-xs text-slate-500">Student count distributed across academic classes</p>
-                </div>
-                <span className="px-2.5 py-1 rounded-full bg-primary-50 text-primary-700 text-[11px] font-bold border border-primary-200">
-                  {dashboard.overview.studentCount} Total
-                </span>
-              </div>
-              <div className="h-64 flex items-center justify-center">
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie
-                      data={classes.map((c, i) => ({
-                        name: c.name,
-                        value: c.sections.reduce((acc: number, s: any) => acc + (s._count?.students || 0), 0) || 1,
-                        fill: ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'][i % 5],
-                      }))}
-                      cx="50%"
-                      cy="50%"
-                      innerRadius={55}
-                      outerRadius={80}
-                      paddingAngle={5}
-                      dataKey="value"
-                      label={({ name, value }) => `${name} (${value})`}
-                    >
-                      {classes.map((_, i) => (
-                        <Cell key={`cell-${i}`} fill={['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'][i % 5]} />
-                      ))}
-                    </Pie>
-                    <Tooltip contentStyle={{ borderRadius: 12, border: '1px solid #e2e8f0' }} />
-                    <Legend verticalAlign="bottom" height={36} iconType="circle" />
-                  </PieChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-          </div>
+          
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {classes.flatMap((c) =>
               c.sections.map((s: any) => (
@@ -744,78 +531,7 @@ export const AdminPortal: React.FC = () => {
             </div>
           </div>
 
-          {/* Interactive Recharts Analytics */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Chart 1: Financial & Fee Revenue Health */}
-            <div className="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm">
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900">Fee Revenue & Collection Status</h4>
-                  <p className="text-xs text-slate-500">Real-time ledger breakdown (Billed vs Collected vs Due)</p>
-                </div>
-                <span className="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-bold border border-emerald-200">
-                  {dashboard.finances.collectionRate}% Recovered
-                </span>
-              </div>
-              <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart
-                    data={[
-                      { name: 'Total Billed', amount: dashboard.finances.totalBilled, fill: '#6366f1' },
-                      { name: 'Settled Paid', amount: dashboard.finances.totalCollected, fill: '#10b981' },
-                      { name: 'Outstanding Due', amount: dashboard.finances.totalOutstanding, fill: '#f59e0b' },
-                    ]}
-                    margin={{ top: 10, right: 10, left: 10, bottom: 0 }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                    <XAxis dataKey="name" tick={{ fontSize: 12, fill: '#64748b' }} axisLine={false} tickLine={false} />
-                    <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} tickFormatter={(val) => `$${val}`} />
-                    <Tooltip formatter={(value: any) => [`$${value}`, 'Amount']} contentStyle={{ borderRadius: 12, border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
-                    <Bar dataKey="amount" radius={[8, 8, 0, 0]} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-
-            {/* Chart 2: Student Enrollment by Class */}
-            <div className="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm">
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900">Enrollment & Capacity Distribution</h4>
-                  <p className="text-xs text-slate-500">Student count distributed across academic classes</p>
-                </div>
-                <span className="px-2.5 py-1 rounded-full bg-primary-50 text-primary-700 text-[11px] font-bold border border-primary-200">
-                  {dashboard.overview.studentCount} Total
-                </span>
-              </div>
-              <div className="h-64 flex items-center justify-center">
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie
-                      data={classes.map((c, i) => ({
-                        name: c.name,
-                        value: c.sections.reduce((acc: number, s: any) => acc + (s._count?.students || 0), 0) || 1,
-                        fill: ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'][i % 5],
-                      }))}
-                      cx="50%"
-                      cy="50%"
-                      innerRadius={55}
-                      outerRadius={80}
-                      paddingAngle={5}
-                      dataKey="value"
-                      label={({ name, value }) => `${name} (${value})`}
-                    >
-                      {classes.map((_, i) => (
-                        <Cell key={`cell-${i}`} fill={['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'][i % 5]} />
-                      ))}
-                    </Pie>
-                    <Tooltip contentStyle={{ borderRadius: 12, border: '1px solid #e2e8f0' }} />
-                    <Legend verticalAlign="bottom" height={36} iconType="circle" />
-                  </PieChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-          </div>
+          
 
           {/* Student Report Card Generator Directory */}
           <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4">
@@ -853,78 +569,7 @@ export const AdminPortal: React.FC = () => {
             </div>
           </div>
 
-          {/* Interactive Recharts Analytics */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Chart 1: Financial & Fee Revenue Health */}
-            <div className="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm">
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900">Fee Revenue & Collection Status</h4>
-                  <p className="text-xs text-slate-500">Real-time ledger breakdown (Billed vs Collected vs Due)</p>
-                </div>
-                <span className="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-bold border border-emerald-200">
-                  {dashboard.finances.collectionRate}% Recovered
-                </span>
-              </div>
-              <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart
-                    data={[
-                      { name: 'Total Billed', amount: dashboard.finances.totalBilled, fill: '#6366f1' },
-                      { name: 'Settled Paid', amount: dashboard.finances.totalCollected, fill: '#10b981' },
-                      { name: 'Outstanding Due', amount: dashboard.finances.totalOutstanding, fill: '#f59e0b' },
-                    ]}
-                    margin={{ top: 10, right: 10, left: 10, bottom: 0 }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                    <XAxis dataKey="name" tick={{ fontSize: 12, fill: '#64748b' }} axisLine={false} tickLine={false} />
-                    <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} tickFormatter={(val) => `$${val}`} />
-                    <Tooltip formatter={(value: any) => [`$${value}`, 'Amount']} contentStyle={{ borderRadius: 12, border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
-                    <Bar dataKey="amount" radius={[8, 8, 0, 0]} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-
-            {/* Chart 2: Student Enrollment by Class */}
-            <div className="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm">
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900">Enrollment & Capacity Distribution</h4>
-                  <p className="text-xs text-slate-500">Student count distributed across academic classes</p>
-                </div>
-                <span className="px-2.5 py-1 rounded-full bg-primary-50 text-primary-700 text-[11px] font-bold border border-primary-200">
-                  {dashboard.overview.studentCount} Total
-                </span>
-              </div>
-              <div className="h-64 flex items-center justify-center">
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie
-                      data={classes.map((c, i) => ({
-                        name: c.name,
-                        value: c.sections.reduce((acc: number, s: any) => acc + (s._count?.students || 0), 0) || 1,
-                        fill: ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'][i % 5],
-                      }))}
-                      cx="50%"
-                      cy="50%"
-                      innerRadius={55}
-                      outerRadius={80}
-                      paddingAngle={5}
-                      dataKey="value"
-                      label={({ name, value }) => `${name} (${value})`}
-                    >
-                      {classes.map((_, i) => (
-                        <Cell key={`cell-${i}`} fill={['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'][i % 5]} />
-                      ))}
-                    </Pie>
-                    <Tooltip contentStyle={{ borderRadius: 12, border: '1px solid #e2e8f0' }} />
-                    <Legend verticalAlign="bottom" height={36} iconType="circle" />
-                  </PieChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-          </div>
+          
         </div>
       )}
 
@@ -995,78 +640,7 @@ export const AdminPortal: React.FC = () => {
             </div>
           </div>
 
-          {/* Interactive Recharts Analytics */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Chart 1: Financial & Fee Revenue Health */}
-            <div className="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm">
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900">Fee Revenue & Collection Status</h4>
-                  <p className="text-xs text-slate-500">Real-time ledger breakdown (Billed vs Collected vs Due)</p>
-                </div>
-                <span className="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-bold border border-emerald-200">
-                  {dashboard.finances.collectionRate}% Recovered
-                </span>
-              </div>
-              <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart
-                    data={[
-                      { name: 'Total Billed', amount: dashboard.finances.totalBilled, fill: '#6366f1' },
-                      { name: 'Settled Paid', amount: dashboard.finances.totalCollected, fill: '#10b981' },
-                      { name: 'Outstanding Due', amount: dashboard.finances.totalOutstanding, fill: '#f59e0b' },
-                    ]}
-                    margin={{ top: 10, right: 10, left: 10, bottom: 0 }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                    <XAxis dataKey="name" tick={{ fontSize: 12, fill: '#64748b' }} axisLine={false} tickLine={false} />
-                    <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} tickFormatter={(val) => `$${val}`} />
-                    <Tooltip formatter={(value: any) => [`$${value}`, 'Amount']} contentStyle={{ borderRadius: 12, border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
-                    <Bar dataKey="amount" radius={[8, 8, 0, 0]} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-
-            {/* Chart 2: Student Enrollment by Class */}
-            <div className="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm">
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900">Enrollment & Capacity Distribution</h4>
-                  <p className="text-xs text-slate-500">Student count distributed across academic classes</p>
-                </div>
-                <span className="px-2.5 py-1 rounded-full bg-primary-50 text-primary-700 text-[11px] font-bold border border-primary-200">
-                  {dashboard.overview.studentCount} Total
-                </span>
-              </div>
-              <div className="h-64 flex items-center justify-center">
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie
-                      data={classes.map((c, i) => ({
-                        name: c.name,
-                        value: c.sections.reduce((acc: number, s: any) => acc + (s._count?.students || 0), 0) || 1,
-                        fill: ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'][i % 5],
-                      }))}
-                      cx="50%"
-                      cy="50%"
-                      innerRadius={55}
-                      outerRadius={80}
-                      paddingAngle={5}
-                      dataKey="value"
-                      label={({ name, value }) => `${name} (${value})`}
-                    >
-                      {classes.map((_, i) => (
-                        <Cell key={`cell-${i}`} fill={['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'][i % 5]} />
-                      ))}
-                    </Pie>
-                    <Tooltip contentStyle={{ borderRadius: 12, border: '1px solid #e2e8f0' }} />
-                    <Legend verticalAlign="bottom" height={36} iconType="circle" />
-                  </PieChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-          </div>
+          
         </div>
       )}
 
@@ -1321,78 +895,7 @@ export const AdminPortal: React.FC = () => {
             </div>
           </div>
 
-          {/* Interactive Recharts Analytics */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Chart 1: Financial & Fee Revenue Health */}
-            <div className="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm">
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900">Fee Revenue & Collection Status</h4>
-                  <p className="text-xs text-slate-500">Real-time ledger breakdown (Billed vs Collected vs Due)</p>
-                </div>
-                <span className="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-bold border border-emerald-200">
-                  {dashboard.finances.collectionRate}% Recovered
-                </span>
-              </div>
-              <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart
-                    data={[
-                      { name: 'Total Billed', amount: dashboard.finances.totalBilled, fill: '#6366f1' },
-                      { name: 'Settled Paid', amount: dashboard.finances.totalCollected, fill: '#10b981' },
-                      { name: 'Outstanding Due', amount: dashboard.finances.totalOutstanding, fill: '#f59e0b' },
-                    ]}
-                    margin={{ top: 10, right: 10, left: 10, bottom: 0 }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                    <XAxis dataKey="name" tick={{ fontSize: 12, fill: '#64748b' }} axisLine={false} tickLine={false} />
-                    <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} tickFormatter={(val) => `$${val}`} />
-                    <Tooltip formatter={(value: any) => [`$${value}`, 'Amount']} contentStyle={{ borderRadius: 12, border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
-                    <Bar dataKey="amount" radius={[8, 8, 0, 0]} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-
-            {/* Chart 2: Student Enrollment by Class */}
-            <div className="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm">
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900">Enrollment & Capacity Distribution</h4>
-                  <p className="text-xs text-slate-500">Student count distributed across academic classes</p>
-                </div>
-                <span className="px-2.5 py-1 rounded-full bg-primary-50 text-primary-700 text-[11px] font-bold border border-primary-200">
-                  {dashboard.overview.studentCount} Total
-                </span>
-              </div>
-              <div className="h-64 flex items-center justify-center">
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie
-                      data={classes.map((c, i) => ({
-                        name: c.name,
-                        value: c.sections.reduce((acc: number, s: any) => acc + (s._count?.students || 0), 0) || 1,
-                        fill: ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'][i % 5],
-                      }))}
-                      cx="50%"
-                      cy="50%"
-                      innerRadius={55}
-                      outerRadius={80}
-                      paddingAngle={5}
-                      dataKey="value"
-                      label={({ name, value }) => `${name} (${value})`}
-                    >
-                      {classes.map((_, i) => (
-                        <Cell key={`cell-${i}`} fill={['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'][i % 5]} />
-                      ))}
-                    </Pie>
-                    <Tooltip contentStyle={{ borderRadius: 12, border: '1px solid #e2e8f0' }} />
-                    <Legend verticalAlign="bottom" height={36} iconType="circle" />
-                  </PieChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-          </div>
+          
         </div>
       )}
     </div>
