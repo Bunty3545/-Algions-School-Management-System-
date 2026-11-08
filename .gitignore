@@ -5,3 +5,5 @@ build/
 dev.db*
 *.log
 .DS_Store
+.pgdata/
+
