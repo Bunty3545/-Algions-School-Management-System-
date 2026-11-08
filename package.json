@@ -11,6 +11,7 @@
     "db:setup": "npm run db:push && npm run db:seed",
     "test:backend": "cd backend && npm test",
     "test": "npm run test:backend",
+    "build": "npm --prefix frontend install && npm --prefix frontend run build",
     "build:frontend": "cd frontend && npm run build"
   },
   "keywords": [
