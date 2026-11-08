@@ -1,21 +1,27 @@
 {
   "name": "algions-school-management-system",
   "version": "1.0.0",
-  "description": "Enterprise-grade Full-Stack School Management System for Algions AI Labs Assessment",
-  "private": true,
-  "workspaces": [
-    "backend",
-    "frontend"
-  ],
+  "description": "Full-Stack School Management System - Algions AI Labs Internship Project",
   "scripts": {
-    "setup": "npm install && npm run db:setup",
-    "db:setup": "npm --prefix backend run db:setup",
-    "db:seed": "npm --prefix backend run db:seed",
-    "dev": "concurrently \"npm --prefix backend run dev\" \"npm --prefix frontend run dev\"",
-    "build": "npm --prefix backend run build && npm --prefix frontend run build",
-    "test": "npm --prefix backend test"
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "db:start": "cd backend && npx tsx src/db/embeddedPg.ts",
+    "db:push": "cd backend && npx prisma db push",
+    "db:seed": "cd backend && npx tsx prisma/seed.ts",
+    "db:setup": "npm run db:push && npm run db:seed",
+    "test:backend": "cd backend && npm test",
+    "test": "npm run test:backend",
+    "build:frontend": "cd frontend && npm run build"
   },
-  "devDependencies": {
-    "concurrently": "^9.1.2"
-  }
+  "keywords": [
+    "school-management-system",
+    "postgresql",
+    "prisma",
+    "react",
+    "vite",
+    "express",
+    "typescript"
+  ],
+  "author": "Senior Full-Stack Engineer",
+  "license": "MIT"
 }
