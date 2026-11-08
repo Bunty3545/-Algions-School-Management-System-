@@ -191,8 +191,11 @@ Tests:       19 passed, 19 total
 
 ## 📄 Submission Deliverables & Documentation
 
+- **Automated Demonstration Video**: [demo-video/school-management-system-demo.webm](https://github.com/Bunty3545/-Algions-School-Management-System-/raw/main/demo-video/school-management-system-demo.webm) (Full end-to-end recording of Admin, Teacher, Guardian workflows and Swagger docs; 9.2 MB).
+- [SUBMISSION_FORM.md](file:///d:/lovely%20professional%20university/placement/81/SUBMISSION_FORM.md): Pre-filled assessment submission form.
 - [database/ERD.md](file:///d:/lovely%20professional%20university/placement/81/database/ERD.md): Complete Mermaid database ER diagram with keys and relationships.
 - [database/schema.sql](file:///d:/lovely%20professional%20university/placement/81/database/schema.sql): PostgreSQL DDL schema export.
 - [docs/TECHNICAL_REPORT.md](file:///d:/lovely%20professional%20university/placement/81/docs/TECHNICAL_REPORT.md): Comprehensive architectural design report.
 - [docs/DEMO_VIDEO_SCRIPT.md](file:///d:/lovely%20professional%20university/placement/81/docs/DEMO_VIDEO_SCRIPT.md): Step-by-step 3–5 minute video presentation script with timeline.
 - [docs/SWAGGER_GUIDE.md](file:///d:/lovely%20professional%20university/placement/81/docs/SWAGGER_GUIDE.md): Interactive Swagger API docs guide.
+- [docs/DEPLOYMENT_GUIDE.md](file:///d:/lovely%20professional%20university/placement/81/docs/DEPLOYMENT_GUIDE.md): Full deployment guide for Render, Vercel, and Docker Compose.

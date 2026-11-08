@@ -67,3 +67,4 @@ For deployment on any Linux VPS (AWS EC2, DigitalOcean, Hetzner, Linode, or Goog
 | `JWT_SECRET` | Strong random string (min 32 chars) | HMAC SHA256 signing secret for JWTs |
 | `JWT_EXPIRES_IN` | `7d` | Bearer token validity period |
 | `CORS_ORIGIN` | `*` or your frontend domain | Allowed cross-origin domain |
+

@@ -18,18 +18,19 @@ Use the pre-filled responses below to complete your individualized submission fo
 ---
 
 ### 3. Code and Version
-- **Repository URL**: [Your GitHub / GitLab Repository Link]
+- **Repository URL**: `https://github.com/Bunty3545/-Algions-School-Management-System-.git`
 - **Primary Branch**: `main`
-- **Final Commit ID**: `298d3db96cb59121cb6cdef87313c5527c2a5a8e`
-- **Reviewer Access**: Ensure repository is public, or add reviewer GitHub usernames if private.
+- **Reviewer Access**: Public repository (`https://github.com/Bunty3545/-Algions-School-Management-System-`)
 
 ---
 
 ### 4. Demonstration
-- **3–5 Minute Video Link**: [Your Loom / YouTube Unlisted Video URL] *(Follow WALKTHROUGH_SCRIPT.md)*
-- **Demo Mode Declaration**: **Local-Only High-Fidelity Demo**
-  - *Declaration*: "The application runs locally with zero external configuration via `npm run setup && npm test && npm run dev`. An embedded relational SQLite database with pre-seeded synthetic data and an instant 1-click reviewer persona switcher eliminates external hosting credentials and payment API dependencies."
-- **Live Web Demo URL (if deployed)**: `N/A (Local-Only Demo Declared)`
+- **Demonstration Video**: Included directly in repository:
+  - **Direct Video Stream / Download**: [school-management-system-demo.webm](https://github.com/Bunty3545/-Algions-School-Management-System-/raw/main/demo-video/school-management-system-demo.webm)
+  - **Local Path**: `demo-video/school-management-system-demo.webm` (File Size: ~9.2 MB)
+- **Demo Mode Declaration**: **Local-Only High-Fidelity Demo with Zero External Friction**
+  - *Declaration*: "The application runs locally with zero external configuration via `npm run setup && npm test && npm run dev`. An automated embedded PostgreSQL engine with pre-seeded synthetic data and an instant 1-click reviewer persona switcher eliminates external hosting credentials and payment API dependencies. Production deployment manifests for Render, Vercel, and Docker Compose are also included."
+- **Live Web Demo URL (if deployed)**: `N/A (Local-Only Demo Declared; Docker Compose & Render blueprints included in repo)`
 
 ---
 
@@ -42,16 +43,16 @@ Use the pre-filled responses below to complete your individualized submission fo
 
 ### 6. Technology Stack & Limitations
 - **Technology Stack**:
-  - **Backend**: Node.js v22, Express.js, TypeScript, Prisma ORM, SQLite, Zod validation, JWT, bcryptjs, Swagger UI
-  - **Frontend**: React 18, Vite, TypeScript, Tailwind CSS, Lucide React, Axios
-  - **Testing**: Jest, Supertest, ts-jest (18/18 acceptance & security tests passing)
+  - **Backend**: Node.js v22, Express.js, TypeScript, Prisma ORM, PostgreSQL, Zod validation, JWT, bcryptjs, Swagger UI
+  - **Frontend**: React 18, Vite, TypeScript, Tailwind CSS, Lucide React, Recharts, Axios
+  - **Testing**: Jest, Supertest, ts-jest (19/19 acceptance & security tests passing)
 - **Setup Notes**:
-  - `npm run setup` — Installs monorepo dependencies, synchronizes database schema, and seeds synthetic demo data.
-  - `npm test` — Executes the 18 automated tests covering all 5 acceptance criteria.
+  - `npm run setup` — Installs monorepo dependencies, generates Prisma client, runs schema sync, and seeds synthetic demo data.
+  - `npm test` — Executes the 19 automated tests covering all 5 acceptance criteria.
   - `npm run dev` — Concurrently starts backend on `http://localhost:5000` and frontend on `http://localhost:5173`.
 - **Known Assumptions & Incomplete Features**:
   1. *Payment Gateway*: Per assessment instructions, payments are simulated; real payment gateway credentials (e.g. Stripe, Razorpay) are not used. The system generates realistic simulated receipts and reconciles balances.
-  2. *Relational Database*: Default configured to SQLite for zero-friction reviewer reproducibility. Production migration to PostgreSQL requires updating datasource provider in `schema.prisma`.
+  2. *PostgreSQL Relational Engine*: Configured with an embedded PostgreSQL 18 engine locally for zero-friction reviewer reproducibility without requiring pre-installed Postgres services. Production-ready configurations for Render, Docker Compose, and external managed Postgres are included.
   3. *SMS/Email Delivery*: Notifications are persisted to the immutable audit trail rather than dispatched via paid third-party SMS providers.
 
 ---
